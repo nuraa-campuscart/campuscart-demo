@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="ms">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>KPTM CampusCart — Demo</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">
+      <div class="logo" aria-hidden="true">
+        <!-- simple trolley + mortarboard SVG -->
+        <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+          <rect x="8" y="18" width="38" height="26" rx="3" fill="#0b3d91"></rect>
+          <path d="M12 22 L32 10 L52 22 L32 34 Z" fill="#ffd166"></path>
+          <circle cx="22" cy="48" r="4" fill="#0b3d91"></circle>
+          <circle cx="42" cy="48" r="4" fill="#0b3d91"></circle>
+        </svg>
+      </div>
+      <div>
+        <div class="title">CampusCart <small class="campus">KPTM</small></div>
+        <div class="tag">Satu Klik, Semua Ada di KPTM!</div>
+      </div>
+    </div>
+    <div class="header-actions">
+      <input id="search" class="search-input" placeholder="Cari Produk / Search products" />
+      <button class="icon-btn" id="btn-notif" title="Notifikasi">🔔</button>
+      <button class="cart-btn" id="open-cart" title="Troli Saya">🛒 <span id="count">0</span></button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div>
+        <h1>Platform Jual Beli Komuniti KPTM</h1>
+        <p>Apps & demo web untuk pelajar, pensyarah & staf — nota, alatulis, makanan & mehr.</p>
+        <div class="cta">
+          <button class="btn primary" onclick="document.getElementById('catalog').scrollIntoView({behavior:'smooth'})">Beli Sekarang</button>
+          <button class="btn ghost" onclick="openLogin()">Login / Sign Up</button>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <!-- placeholder graphic -->
+        <img src="https://via.placeholder.com/320x160/ffd166/0b3d91?text=CampusCart" alt="CampusCart banner">
+      </div>
+    </section>
+
+    <nav class="categories" aria-label="Kategori">
+      <button class="cat active" data-cat="all">All / Semua</button>
+      <button class="cat" data-cat="notes">📚 Notes</button>
+      <button class="cat" data-cat="food">🍔 Food</button>
+      <button class="cat" data-cat="lifestyle">🎒 Lifestyle</button>
+    </nav>
+
+    <section id="catalog" class="catalog">
+      <h2>Produk Kampus / Campus Products</h2>
+      <div id="product-grid" class="grid">
+        <!-- product cards injected by JS -->
+      </div>
+    </section>
+  </main>
+
+  <!-- Cart Drawer -->
+  <aside id="cart-drawer" class="drawer" aria-hidden="true">
+    <div class="drawer-header">
+      <h3>Troli Saya / My Cart</h3>
+      <button class="close" onclick="toggleCart()">✕</button>
+    </div>
+    <div id="cart-items" class="cart-items"></div>
+    <div class="drawer-footer">
+      <div class="total">Total: <strong id="total">RM 0</strong></div>
+      <div>
+        <button class="btn ghost" onclick="clearCart()">Kosongkan</button>
+        <button class="btn primary" onclick="gotoCheckout()">Checkout</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Product Modal -->
+  <div id="modal" class="modal" aria-hidden="true">
+    <div class="modal-body">
+      <button class="close" onclick="closeModal()">✕</button>
+      <div id="modal-content"></div>
+    </div>
+  </div>
+
+  <!-- Simple login modal -->
+  <div id="login-modal" class="modal" aria-hidden="true">
+    <div class="modal-body small">
+      <button class="close" onclick="closeLogin()">✕</button>
+      <h3>Login / Sign Up (Demo)</h3>
+      <p>Gunakan ID KPTM (demo). Fungsi ini hanya mock untuk prototaip.</p>
+      <input id="demo-id" placeholder="ID Pelajar / Staff" />
+      <div style="margin-top:10px;text-align:right">
+        <button class="btn primary" onclick="closeLogin()">Simpan</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Checkout simple page -->
+  <div id="checkout" class="modal" aria-hidden="true">
+    <div class="modal-body">
+      <button class="close" onclick="closeCheckout()">✕</button>
+      <h3>Checkout</h3>
+      <div id="checkout-list"></div>
+      <div class="payment">
+        <label>Pilih Kaedah Pembayaran</label>
+        <select id="pay-method">
+          <option value="fpx">FPX / Online Banking</option>
+          <option value="ewallet">E-Wallet</option>
+          <option value="cod">Bayar Semasa Ambil (COD)</option>
+        </select>
+        <div style="margin-top:12px;text-align:right">
+          <button class="btn primary" onclick="confirmPayment()">Bayar (Demo)</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <small>Demo KPTM CampusCart • Untuk tujuan prototaip & pembentangan.</small>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
